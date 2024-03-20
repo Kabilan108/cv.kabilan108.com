@@ -1,22 +1,34 @@
-# Use the official lightweight Node.js 18 image.
-# https://hub.docker.com/_/node
-FROM node:18-slim
-
-# Create and change to the app directory.
+# use official Bun image
+FROM oven/bun:latest as base
 WORKDIR /usr/src/app
 
-# Copy application dependency manifests to the container image.
-# A wildcard is used to ensure both package.json AND package-lock.json are copied.
-COPY package*.json ./
+# install dependencies into temp directory
+# this will cache the dependencies between builds
+FROM base AS install
+RUN mkdir -p /temp/dev
+COPY package.json bun.lockb /temp/dev/
+RUN cd /temp/dev && bun install --frozen-lockfile
 
-# Install all dependencies.
-RUN npm install
+# install with --production (exclude devDependencies)
+RUN mkdir -p /temp/prod
+COPY package.json bun.lockb /temp/prod/
+RUN cd /temp/prod && bun install --frozen-lockfile --production
 
-# Copy local code to the container image.
-COPY . .
+# copy node_modules from temp directory
+FROM base AS prerelease
+COPY --from=install /temp/prod/node_modules node_modules
+COPY . . 
 
-# Build the app
-RUN npm run build
+# build
+ENV NODE_ENV=production
+RUN bun run build
 
-# Run the web service on container startup.
-CMD [ "npm", "start" ]
+# copy prod dependencies and source code into final image
+FROM base AS release
+COPY --from=install /temp/prod/node_modules node_modules
+COPY --from=prerelease /usr/src/app .
+
+# run the app
+USER bun
+EXPOSE 3000/tcp
+ENTRYPOINT ["bun", "start"]
