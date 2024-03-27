@@ -153,7 +153,14 @@ export default function Page() {
                     </div>
                   </div>
                 </CardHeader>
-                <CardContent className="mt-2">{education.degree}</CardContent>
+                <CardContent className="mt-2">
+                  {education.degree}
+                  {education?.comments && (
+                    <p className="text-xs text-muted-foreground">
+                      {education.comments}
+                    </p>
+                  )}
+                </CardContent>
               </Card>
             );
           })}
