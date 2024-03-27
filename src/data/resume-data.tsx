@@ -137,8 +137,8 @@ export const RESUME_DATA = {
       description: "A CLI and serverless API for audio transcription using OpenAI Whisper",
       logo: ConsultlyLogo,
       link: {
-        label: "consultly.com",
-        href: "https://consultly.com/",
+        label: "GitHub",
+        href: "https://github.com/Kabilan108/geass",
       },
     },
   ],
