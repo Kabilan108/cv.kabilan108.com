@@ -43,3 +43,4 @@ jobs:
         script: |
           cd /var/www/cv.kabilan108.com
           docker compose pull
+          docker compose up -d
