@@ -140,6 +140,21 @@ export const RESUME_DATA = {
       },
     },
     {
+      title: "ASD Biomarkers",
+      techStack: [
+        "bctpy",
+        "scikit-learn",
+        "Machine Learning",
+        "Connectomics",
+        "Biomarker discovery"
+      ],
+      description: "A machine learning-based approach to biomarker discovery for autism spectrum disorder",
+      link: {
+        label: "GitHub",
+        href: "https://github.com/Kabilan108/asd-biomarkers",
+      },
+    },
+    {
       title: "geass",
       techStack: [
         "Side Project",
