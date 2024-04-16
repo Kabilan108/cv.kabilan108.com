@@ -2,16 +2,9 @@ version: '3.8'
 
 services:
   app:
-    build: 
-      context: .
-      dockerfile: Dockerfile
-      target: dist
+    image: kabilan108/cv.kabilan108.com:latest
     ports:
       - 3000:3000
-    environment:
-      - NODE_ENV=production
-    volumes:
-      - .:/usr/src/app
     restart: unless-stopped
     deploy:
       replicas: 1
