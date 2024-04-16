@@ -125,6 +125,21 @@ export const RESUME_DATA = {
   ],
   projects: [
     {
+      title: "MLGO: Machine Learning for Gene Ontology Prediction",
+      techStack: [
+        "Python",
+        "scikit-learn",
+        "keras",
+        "Deep Learning",
+        "Bioinformatics",
+      ],
+      description: "A autoencoder-based model for gene ontology prediction",
+      link: {
+        label: "GitHub",
+        href: "https://github.com/Kabilan108/mlgo/tree/submission",
+      },
+    },
+    {
       title: "geass",
       techStack: [
         "Side Project",
@@ -135,7 +150,6 @@ export const RESUME_DATA = {
         "Whisper",
       ],
       description: "A CLI and serverless API for audio transcription using OpenAI Whisper",
-      logo: ConsultlyLogo,
       link: {
         label: "GitHub",
         href: "https://github.com/Kabilan108/geass",
